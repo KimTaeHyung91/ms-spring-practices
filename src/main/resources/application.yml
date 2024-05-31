@@ -1,0 +1,35 @@
+server:
+  port: 6000
+  shutdown: graceful
+
+spring:
+  lifecycle:
+    timeout-per-shutdown-phase: 20s
+  application:
+    name: ms
+
+  datasource:
+    hikari:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbc-url: jdbc:mysql://localhost:13306/ms?serverTimezone=UTC&characterEncoding=UTF-8
+      username: ms_dev
+      password: o6ZJA0Z3WWri4XI
+  flyway:
+    user: ms_dev
+    password: o6ZJA0Z3WWri4XI
+    schemas: ms
+    enabled: true
+    url: jdbc:mysql://localhost:13306/ms?serverTimezone=UTC&characterEncoding=UTF-8
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: none
+
+decorator:
+  datasource:
+    p6spy:
+      enable-logging: true
+      multiline: true
+      logging: slf4j
+      tracing:
+        include-parameter-values: true
